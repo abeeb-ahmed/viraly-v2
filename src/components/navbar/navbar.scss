@@ -1,0 +1,248 @@
+@import "../../style.scss";
+
+.navbar {
+  @include themify($themes) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    height: 50px;
+    border-bottom: 1px solid themed("border");
+    position: sticky;
+    top: 0;
+    background-color: themed("bg");
+    color: themed("textColor");
+    z-index: 999;
+
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+
+      @include mobile {
+        justify-content: space-between;
+        flex: 1;
+      }
+
+      .icons {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+      }
+
+      span {
+        font-weight: bold;
+        font-size: 20px;
+        color: themed("logo");
+      }
+
+      .search {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid themed("border");
+        border-radius: 5px;
+        padding: 5px;
+
+        @include mobile {
+          display: none;
+        }
+        input {
+          border: none;
+          width: 500px;
+          background-color: transparent;
+          color: themed("textColor");
+
+          @include tablet {
+            width: 200px;
+          }
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      @include mobile {
+        display: none;
+      }
+
+      .user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 500;
+
+        @include tablet {
+          display: none;
+        }
+
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        span {
+        }
+      }
+    }
+  }
+
+  .icon {
+    cursor: pointer;
+
+    &.laptop {
+      display: block;
+
+      @include mobile {
+        display: none;
+      }
+    }
+
+    &.mobile {
+      display: none;
+
+      @include mobile {
+        display: block;
+      }
+    }
+  }
+
+  .layer {
+    display: none;
+
+    @include mobile {
+      display: flex;
+      z-index: 100;
+      background-color: rgba(0, 0, 0, 0.205);
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  .mobileNav {
+    display: none;
+
+    @include mobile {
+      padding: 20px;
+      z-index: 999;
+      width: 70vw;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      position: fixed;
+      transform: translateX(100%);
+      transition: all ease-out 0.3s;
+      top: 0;
+      right: 0;
+
+      @include themify($themes) {
+        color: themed("textColorSoft");
+        background-color: themed("bgSoft");
+      }
+
+      &.open {
+        transform: translateX(0);
+        transition: all ease-out 0.3s;
+      }
+
+      .top {
+        margin-top: 50px;
+
+        .user {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-weight: 500;
+
+          img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+
+          span {
+          }
+        }
+
+        .buttons {
+          margin-top: 20px;
+          display: flex;
+          gap: 10px;
+
+          button {
+            border: none;
+            padding: 8px;
+            color: white;
+            cursor: pointer;
+            color: #f0544f;
+            border: solid 1px #f0544f;
+            background-color: transparent;
+          }
+        }
+      }
+
+      .middle {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        h2 {
+          font-size: 20px;
+        }
+
+        .user {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin: 20px 0px;
+
+          .userInfo {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            font-size: 14px;
+            height: max-content;
+
+            img {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              object-fit: cover;
+            }
+          }
+
+          .buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            button {
+              border: none;
+              padding: 5px;
+              color: white;
+              cursor: pointer;
+              background-color: #5271ff;
+            }
+          }
+        }
+      }
+
+      .icon {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,109 @@
+@import "../../style.scss";
+
+.update {
+  @include themify($themes) {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+    top: 0;
+    right: 0;
+    color: themed("textColorSoft");
+  }
+
+  .container {
+    @include themify($themes) {
+      background-color: themed("bg");
+    }
+    width: 400px;
+    padding: 30px;
+    -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+    -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+    position: relative;
+    border-radius: 5px;
+
+    h2 {
+      @include themify($themes) {
+        color: themed("textColorSoft");
+      }
+
+      @include mobile {
+        font-size: 20px;
+      }
+    }
+
+    .close {
+      @include themify($themes) {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        cursor: pointer;
+      }
+    }
+
+    form {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      input {
+        display: flex;
+        background-color: transparent;
+        flex: 1;
+        padding: 5px;
+        outline: none;
+        border: solid 1px lightgray;
+
+        &:focus {
+          @include themify($themes) {
+            color: themed("textColorSoft");
+          }
+        }
+      }
+
+      .row {
+        display: flex;
+        gap: 5px;
+        flex-direction: column;
+        flex: 1;
+
+        label {
+          font-size: 14px;
+          justify-content: center;
+          margin-bottom: 10px;
+          margin: 0;
+          font-weight: 600;
+        }
+      }
+
+      button {
+        border: none;
+        background-color: #5271ff;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        font-weight: 500;
+
+        &:disabled {
+          cursor: not-allowed;
+          opacity: 0.2;
+        }
+      }
+    }
+
+    @include mobile {
+      width: auto;
+      max-width: 400px;
+      padding: 20px;
+    }
+  }
+}
