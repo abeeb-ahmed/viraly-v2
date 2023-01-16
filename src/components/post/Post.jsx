@@ -68,7 +68,7 @@ const Post = ({ post }) => {
       // doc.data() is never undefined for query doc snapshots
       likes.push(doc.data());
     });
-    return likes[0].likes;
+    return likes[0]?.likes;
   });
 
   // send post to db using react query

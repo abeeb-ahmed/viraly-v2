@@ -118,15 +118,15 @@ const Navbar = () => {
         <div className="middle">
           <span>Suggestions For You</span>
           {featuredUsersQuery.data?.map((user) => {
-            if (user.id === currentUser.id) {
+            if (user.uid === currentUser.uid) {
               return;
             } else {
               return (
-                <div className="user">
+                <div className="user" key={user.uid}>
                   <div className="userInfo">
                     <img
                       src={
-                        user.profilePic ||
+                        user.photoURL ||
                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZvmV2bdt-eITXhe_MeJMt4zKRHatRco1AgPedOFkdvQ&s"
                       }
                       alt=""
@@ -134,7 +134,7 @@ const Navbar = () => {
                     <span>{user.name}</span>
                   </div>
                   <div className="buttons">
-                    <button onClick={() => handleProfileView(user.id)}>
+                    <button onClick={() => handleProfileView(user.uid)}>
                       View Profile
                     </button>
                   </div>

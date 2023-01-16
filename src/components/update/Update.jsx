@@ -85,6 +85,7 @@ const Update = ({ setUpdateOpen }) => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["userUpdate"]);
+        queryClient.invalidateQueries(["currentUser"]);
       },
     }
   );

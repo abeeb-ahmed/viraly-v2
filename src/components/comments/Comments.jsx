@@ -23,7 +23,7 @@ const Comments = ({ postId }) => {
   const queryClient = useQueryClient();
 
   // comments get request using react query
-  const commentsQuery = useQuery(["comments"], async () => {
+  const commentsQuery = useQuery(["comments", postId], async () => {
     let comments = [];
     const q = query(collection(db, "posts"), where("id", "==", postId));
 
@@ -32,7 +32,11 @@ const Comments = ({ postId }) => {
       comments.push(doc.data().comments);
     });
 
-    return comments[0].reverse();
+    const sortedComments = comments[0].sort(
+      (a, b) => b.createdAt - a.createdAt
+    );
+
+    return sortedComments;
   });
 
   // add comment post request using react query
@@ -55,7 +59,7 @@ const Comments = ({ postId }) => {
           senderId: currentUser.uid,
           photoURL: currentUser.photoURL,
           name: currentUser.name,
-          createdAt: serverTimestamp(),
+          createdAt: Date.now(),
         }),
       });
     },
@@ -105,9 +109,7 @@ const Comments = ({ postId }) => {
             <span>{comment.name}</span>
             <p>{comment.message}</p>
           </div>
-          <span className="date">
-            {moment(comment.createdAt.toMillis()).fromNow()}
-          </span>
+          <span className="date">{moment(comment.createdAt).fromNow()}</span>
         </div>
       ))}
     </div>

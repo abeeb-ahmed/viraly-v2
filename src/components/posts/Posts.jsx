@@ -1,5 +1,6 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { useContext } from "react";
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
+import moment from "moment/moment";
+import { useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { AuthContext } from "../../context/authContext";
 import { db } from "../../firebase";
@@ -8,9 +9,11 @@ import "./posts.scss";
 
 const Posts = ({ userId = "" }) => {
   const { currentUser } = useContext(AuthContext);
+
   const { isLoading, error, data } = useQuery(["posts"], async () => {
     const posts = [];
-    if (userId) {
+
+    if (userId !== "") {
       const q = query(collection(db, "posts"), where("senderId", "==", userId));
 
       const querySnapshot = await getDocs(q);
@@ -25,21 +28,27 @@ const Posts = ({ userId = "" }) => {
       );
 
       const querySnapshot = await getDocs(q);
+
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
+        doc.data().createdAt = doc.data().createdAt.toMillis();
+
         posts.push(doc.data());
       });
     }
 
-    return posts;
+    const sortedPosts = posts.sort((a, b) => b.createdAt - a.createdAt);
+
+    return sortedPosts;
   });
+
   return (
     <div className="posts">
       {error
         ? "Something went wrong"
         : isLoading
         ? "Loading..."
-        : data?.map((post) => <Post post={post} key={post.id} />)}
+        : data?.reverse().map((post) => <Post post={post} key={post.id} />)}
     </div>
   );
 };

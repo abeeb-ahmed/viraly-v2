@@ -102,6 +102,7 @@ const Profile = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["relationships"]);
+        queryClient.invalidateQueries(["posts"]);
       },
     }
   );
@@ -137,6 +138,7 @@ const Profile = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["relationships"]);
+        queryClient.invalidateQueries(["posts"]);
       },
     }
   );
