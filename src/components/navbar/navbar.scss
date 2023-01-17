@@ -196,6 +196,10 @@
         flex-direction: column;
         gap: 20px;
 
+        @include mobile {
+          gap: 10px;
+        }
+
         h2 {
           font-size: 20px;
         }
@@ -206,6 +210,10 @@
           justify-content: space-between;
           margin: 20px 0px;
 
+          @include mobile {
+            margin: 10px 0px;
+          }
+
           .userInfo {
             display: flex;
             align-items: center;
@@ -213,6 +221,10 @@
             position: relative;
             font-size: 14px;
             height: max-content;
+
+            @include mobile {
+              gap: 10px;
+            }
 
             img {
               width: 40px;
