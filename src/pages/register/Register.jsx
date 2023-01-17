@@ -1,7 +1,8 @@
 import { collection, addDoc } from "firebase/firestore";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { AuthContext } from "../../context/authContext";
 
 import "./register.scss";
 import { auth, db } from "../../firebase";
@@ -14,6 +15,11 @@ const Register = () => {
   const [name, setName] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { currentUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (currentUser) navigate("/");
+  }, [currentUser, navigate]);
 
   const handleClick = async (e) => {
     if (!username || !email || !name || !password) return;

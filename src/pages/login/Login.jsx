@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import "./login.scss";
@@ -13,6 +13,10 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const { login, currentUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (currentUser) navigate("/");
+  }, [currentUser, navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
