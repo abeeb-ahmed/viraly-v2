@@ -48,7 +48,7 @@ const Posts = ({ userId = "" }) => {
         ? "Something went wrong"
         : isLoading
         ? "Loading..."
-        : data?.reverse().map((post) => <Post post={post} key={post.id} />)}
+        : data?.map((post) => <Post post={post} key={post.id} />)}
     </div>
   );
 };
