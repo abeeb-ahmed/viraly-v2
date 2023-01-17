@@ -12,10 +12,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const { login } = useContext(AuthContext);
+  const { login, currentUser } = useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    let user;
     if (!email || !password) return;
     setLoading(true);
     // sign in user
@@ -29,11 +31,12 @@ const Login = () => {
         );
 
         const querySnapshot = await getDocs(q);
-        querySnapshot.forEach(async (doc) => {
+        querySnapshot.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
-          await login(doc.data());
+          user = doc.data();
         });
-        navigate("/");
+        login(user);
+        currentUser && navigate("/");
       })
       .catch((error) => {
         const errorMessage = error.message;
