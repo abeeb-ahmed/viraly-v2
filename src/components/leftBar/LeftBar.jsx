@@ -30,7 +30,7 @@ const LeftBar = () => {
             <div className="user">
               <img
                 src={
-                  currentUser?.photoURL ||
+                  currentUser.photoURL ||
                   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZvmV2bdt-eITXhe_MeJMt4zKRHatRco1AgPedOFkdvQ&s"
                 }
                 alt=""

@@ -33,7 +33,7 @@ const Rightbar = () => {
                   <div className="userInfo">
                     <img
                       src={
-                        user.profilePic ||
+                        user.photoURL ||
                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZvmV2bdt-eITXhe_MeJMt4zKRHatRco1AgPedOFkdvQ&s"
                       }
                       alt=""
