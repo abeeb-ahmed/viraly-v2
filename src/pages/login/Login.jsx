@@ -36,12 +36,12 @@ const Login = () => {
           user = doc.data();
         });
         login(user);
-        currentUser && navigate("/");
       })
       .catch((error) => {
         const errorMessage = error.message;
         setError(errorMessage);
       });
+    currentUser && navigate("/");
     setLoading(false);
   };
 
