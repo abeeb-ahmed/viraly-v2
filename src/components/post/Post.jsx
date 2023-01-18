@@ -116,7 +116,7 @@ const Post = ({ post }) => {
     }
   );
   const handleLike = () => {
-    mutation.mutate(likesQuery.data.includes(currentUser.uid));
+    mutation.mutate(likesQuery.data?.includes(currentUser.uid));
   };
 
   return (
@@ -139,7 +139,7 @@ const Post = ({ post }) => {
                 <span className="name">{user?.name}</span>
               </Link>
               <span className="date">
-                {moment(post.createdAt.toMillis()).fromNow()}
+                {moment(post.createdAt?.toMillis()).fromNow()}
               </span>{" "}
             </div>
           </div>
@@ -153,7 +153,7 @@ const Post = ({ post }) => {
           <div className="item">
             {likesQuery.isLoading ? (
               "Loading..."
-            ) : likesQuery.data.includes(currentUser.uid) ? (
+            ) : likesQuery.data?.includes(currentUser.uid) ? (
               <FavoriteOutlinedIcon
                 style={{ color: "red" }}
                 onClick={handleLike}

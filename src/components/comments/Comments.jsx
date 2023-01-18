@@ -32,7 +32,7 @@ const Comments = ({ postId }) => {
       comments.push(doc.data().comments);
     });
 
-    const sortedComments = comments[0].sort(
+    const sortedComments = comments[0]?.sort(
       (a, b) => b.createdAt - a.createdAt
     );
 
@@ -106,8 +106,8 @@ const Comments = ({ postId }) => {
             alt=""
           />
           <div className="info">
-            <span>{comment.name}</span>
-            <p>{comment.message}</p>
+            <span>{comment?.name}</span>
+            <p>{comment?.message}</p>
           </div>
           <span className="date">{moment(comment.createdAt).fromNow()}</span>
         </div>

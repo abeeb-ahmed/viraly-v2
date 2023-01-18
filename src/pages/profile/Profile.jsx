@@ -152,7 +152,7 @@ const Profile = () => {
 
   return (
     <div className="profile">
-      {userQuery.isLoading || relationshipsQuery.isLoading ? (
+      {userQuery?.isLoading || relationshipsQuery?.isLoading ? (
         "Loading..."
       ) : (
         <>
