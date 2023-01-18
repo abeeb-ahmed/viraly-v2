@@ -24,7 +24,7 @@ const LeftBar = () => {
       <div className="container">
         <div className="menu">
           <Link
-            to={`/profile/${currentUser.id}`}
+            to={`/profile/${currentUser.uid}`}
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <div className="user">
